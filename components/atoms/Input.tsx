@@ -4,12 +4,19 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   status?: 'idle' | 'error' | 'success'
   label?: string
   helperText?: string
+  dark?: boolean
 }
 
 const borderByStatus: Record<NonNullable<InputProps['status']>, string> = {
   idle: 'border-warm-gray focus:border-stone-dark',
   error: 'border-red-400 focus:border-red-500',
   success: 'border-sage focus:border-sage',
+}
+
+const darkBorderByStatus: Record<NonNullable<InputProps['status']>, string> = {
+  idle: 'border-white/30 focus:border-white',
+  error: 'border-red-400 focus:border-red-400',
+  success: 'border-white/60 focus:border-white',
 }
 
 const helperColorByStatus: Record<NonNullable<InputProps['status']>, string> = {
@@ -19,7 +26,7 @@ const helperColorByStatus: Record<NonNullable<InputProps['status']>, string> = {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
-  { status = 'idle', label, helperText, id, className = '', ...props },
+  { status = 'idle', label, helperText, id, className = '', dark = false, ...props },
   ref
 ) {
   return (
@@ -27,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       {label && (
         <label
           htmlFor={id}
-          className="text-[10px] tracking-widest uppercase text-warm-gray"
+          className={`text-[10px] tracking-widest uppercase ${dark ? 'text-white/50' : 'text-warm-gray'}`}
         >
           {label}
         </label>
@@ -38,16 +45,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         className={[
           'h-11 w-full bg-transparent',
           'border-b px-0',
-          'text-sm font-light text-stone-dark',
-          'placeholder:text-warm-gray',
+          dark ? 'text-white placeholder:text-white/30' : 'text-stone-dark placeholder:text-warm-gray',
+          'text-sm font-light',
           'outline-none transition-colors',
-          borderByStatus[status],
+          dark ? darkBorderByStatus[status] : borderByStatus[status],
           className,
         ].join(' ')}
         {...props}
       />
       {helperText && (
-        <p className={`text-xs ${helperColorByStatus[status]}`}>{helperText}</p>
+        <p className={`text-xs ${dark ? 'text-red-400' : helperColorByStatus[status]}`}>{helperText}</p>
       )}
     </div>
   )

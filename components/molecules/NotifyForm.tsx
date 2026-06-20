@@ -6,11 +6,15 @@ import Button from '@/components/atoms/Button'
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error'
 
+interface NotifyFormProps {
+  dark?: boolean
+}
+
 function isValidEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 }
 
-export default function NotifyForm() {
+export default function NotifyForm({ dark = false }: NotifyFormProps) {
   const [email, setEmail] = useState('')
   const [touched, setTouched] = useState(false)
   const [status, setStatus] = useState<FormStatus>('idle')
@@ -29,7 +33,7 @@ export default function NotifyForm() {
 
   if (status === 'success') {
     return (
-      <p className="text-xs tracking-widest uppercase text-sage py-2">
+      <p className={`text-xs tracking-widest uppercase py-2 ${dark ? 'text-white/70' : 'text-sage'}`}>
         Gracias — te avisaremos pronto.
       </p>
     )
@@ -52,11 +56,12 @@ export default function NotifyForm() {
           helperText={hasError ? 'Ingresa un email válido.' : undefined}
           aria-label="Correo electrónico"
           autoComplete="email"
+          dark={dark}
         />
       </div>
       <Button
         type="submit"
-        variant="primary"
+        variant={dark ? 'ghost-light' : 'primary'}
         size="md"
         isLoading={status === 'loading'}
         className="shrink-0 mt-px"
