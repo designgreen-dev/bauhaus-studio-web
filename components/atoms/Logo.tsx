@@ -1,7 +1,14 @@
-export default function Logo() {
+import Image from 'next/image'
+
+export default function Logo({ className = '' }: { className?: string }) {
   return (
-    <span className="text-sm tracking-[0.3em] font-light uppercase text-stone-dark select-none">
-      BAUHAUS STUDIO
-    </span>
+    <Image
+      src="/images/bauhaus-02.png"
+      alt="Bauhaus Studio"
+      width={112}
+      height={42}
+      className={`object-contain ${className}`}
+      priority
+    />
   )
 }
