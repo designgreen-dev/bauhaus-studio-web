@@ -39,7 +39,8 @@ function PartnerCard({ partner }: { partner: (typeof PARTNERS)[number] }) {
           alt={partner.nombre}
           style={{
             filter: hovered ? 'none' : 'grayscale(100%)',
-            transition: 'filter 0.5s ease',
+            transform: hovered ? 'scale(1.06)' : 'scale(1)',
+            transition: 'filter 0.5s ease, transform 0.6s ease',
           }}
         />
       </div>
