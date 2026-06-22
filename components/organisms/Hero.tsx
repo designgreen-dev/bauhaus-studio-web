@@ -6,6 +6,7 @@ import { Instagram, Mail, Phone } from 'lucide-react'
 import Logo from '@/components/atoms/Logo'
 import NavMenu from '@/components/molecules/NavMenu'
 import NosotrosOverlay from '@/components/organisms/NosotrosOverlay'
+import ServiciosOverlay from '@/components/organisms/ServiciosOverlay'
 
 const WhatsAppIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -102,8 +103,11 @@ export default function Hero() {
       {activeSection === 'nosotros' && (
         <NosotrosOverlay onClose={() => setActiveSection(null)} />
       )}
+      {activeSection === 'servicios' && (
+        <ServiciosOverlay onClose={() => setActiveSection(null)} />
+      )}
 
-      <div className="absolute top-12 right-6 md:right-16 lg:right-28 xl:right-36 z-10">
+      <div className="fixed top-12 right-6 md:right-16 lg:right-28 xl:right-36 z-10">
         <Logo />
       </div>
 

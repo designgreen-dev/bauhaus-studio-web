@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
+import { Urbanist } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({
+const urbanist = Urbanist({
   subsets: ['latin'],
-  variable: '--font-geist-sans',
-  weight: ['300', '400'],
+  variable: '--font-urbanist',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={geistSans.variable}>
+    <html lang="es" className={urbanist.variable}>
       <body className="font-sans bg-cream text-stone-dark antialiased min-h-screen">
         {children}
       </body>

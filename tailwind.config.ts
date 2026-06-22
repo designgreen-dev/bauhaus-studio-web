@@ -16,7 +16,7 @@ const config: Config = {
         'warm-gray': '#9E9589',
       },
       fontFamily: {
-        sans: ['var(--font-geist-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-urbanist)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         logo: '0.3em',

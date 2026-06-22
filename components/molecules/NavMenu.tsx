@@ -13,7 +13,7 @@ export default function NavMenu({ onOpen }: Props) {
 
   return (
     <div
-      className="absolute top-12 left-6 md:left-16 lg:left-28 xl:left-36 z-20"
+      className="fixed top-12 left-6 md:left-16 lg:left-28 xl:left-36 z-20"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
