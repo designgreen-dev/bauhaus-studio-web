@@ -30,7 +30,17 @@ function PartnerCard({ partner }: { partner: (typeof PARTNERS)[number] }) {
     <div className="flex flex-col gap-4">
       <div
         className="w-full relative overflow-hidden"
-        style={{ aspectRatio: '3 / 4', maxHeight: '55vh' }}
+        style={{
+          aspectRatio: '3 / 4',
+          maxHeight: '55vh',
+          transform: hovered
+            ? 'perspective(700px) translateZ(38px) rotateX(-2deg)'
+            : 'perspective(700px) translateZ(0px) rotateX(0deg)',
+          boxShadow: hovered
+            ? '0 32px 64px rgba(0,0,0,0.55), 0 8px 20px rgba(0,0,0,0.3)'
+            : '0 4px 18px rgba(0,0,0,0.2)',
+          transition: 'transform 0.55s ease, box-shadow 0.55s ease',
+        }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
