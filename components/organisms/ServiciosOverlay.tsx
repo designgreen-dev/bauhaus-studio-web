@@ -203,13 +203,21 @@ export default function ServiciosOverlay({ onClose }: Props) {
                             cursor: 'pointer',
                             padding: 0,
                             fontWeight: isActive ? 500 : 300,
-                            transition: 'color 0.2s ease, font-size 0.5s ease',
+                            transition: 'color 0.2s ease, font-size 0.5s ease, transform 0.3s ease',
+                            transform: 'scale(1)',
+                            transformOrigin: selected ? 'left center' : 'center center',
                             display: 'block',
                             width: '100%',
                             textAlign: selected ? 'left' : 'center',
                           }}
-                          onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,1)' }}
-                          onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
+                          onMouseEnter={e => {
+                            if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,1)'
+                            e.currentTarget.style.transform = 'scale(1.07)'
+                          }}
+                          onMouseLeave={e => {
+                            if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.65)'
+                            e.currentTarget.style.transform = 'scale(1)'
+                          }}
                         >
                           {servicio.nombre}
                         </button>
@@ -249,9 +257,9 @@ export default function ServiciosOverlay({ onClose }: Props) {
                     <button
                       onClick={() => handleSelect(servicio, dep.nombre)}
                       className="font-light tracking-wide text-left w-full"
-                      style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', transition: 'color 0.2s ease' }}
-                      onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,1)')}
-                      onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}
+                      style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', background: 'none', border: 'none', cursor: 'pointer', padding: '4px 0', transition: 'color 0.2s ease, transform 0.3s ease', transform: 'scale(1)', transformOrigin: 'left center' }}
+                      onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,1)'; e.currentTarget.style.transform = 'scale(1.07)' }}
+                      onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.85)'; e.currentTarget.style.transform = 'scale(1)' }}
                     >
                       {servicio.nombre}
                     </button>
