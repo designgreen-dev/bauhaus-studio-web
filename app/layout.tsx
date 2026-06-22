@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: 'Bauhaus Studio — Próximamente',
   description:
     'Estudio de arquitectura bioclimática en Huaraz, Perú. Próxima apertura.',
+  icons: {
+    icon: '/images/bauhaus-02.png',
+    apple: '/images/bauhaus-02.png',
+  },
   openGraph: {
     title: 'Bauhaus Studio',
     description: 'Arquitectura bioclimática. Huaraz, Perú.',
