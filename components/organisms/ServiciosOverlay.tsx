@@ -127,63 +127,84 @@ export default function ServiciosOverlay({ onClose }: Props) {
         </p>
       </div>
 
-      {/* ══ DESKTOP: master-detalle lado a lado ══ */}
+      {/* ══ DESKTOP: lista centrada → detalle izquierda / lista derecha ══ */}
       <div
         className="hidden md:flex"
         style={{ flex: 1, overflow: 'hidden', paddingBottom: '3rem' }}
       >
-        {/* Lista */}
+        {/* Detalle — aparece a la IZQUIERDA al seleccionar */}
         <div
           style={{
-            width: '40%',
-            overflowY: 'auto',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '2.5rem',
-            padding: '0 3rem 0 5rem',
-            borderRight: '1px solid rgba(255,255,255,0.1)',
-          }}
-        >
-          {DEPARTAMENTOS.map((dep) => (
-            <div key={dep.nombre} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <p className="uppercase tracking-[0.2em] font-light" style={{ fontSize: '9px', color: 'rgba(255,255,255,0.5)' }}>
-                {dep.nombre}
-              </p>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                {dep.servicios.map((servicio) => {
-                  const isActive = selected?.nombre === servicio.nombre
-                  return (
-                    <li key={servicio.nombre}>
-                      <button
-                        onClick={() => handleSelect(servicio, dep.nombre)}
-                        className="font-light tracking-wide text-left"
-                        style={{ fontSize: '13px', color: isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s ease', fontWeight: isActive ? 400 : 300 }}
-                        onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.95)' }}
-                        onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.7)' }}
-                      >
-                        {servicio.nombre}
-                      </button>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        {/* Detalle desktop */}
-        <div
-          style={{
-            flex: 1,
+            width: selected ? '60%' : '0%',
+            flexShrink: 0,
+            overflow: 'hidden',
+            transition: 'width 0.45s ease',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '0 5rem',
-            opacity: selected ? 1 : 0,
-            transition: 'opacity 0.35s ease',
           }}
         >
-          {selected && <DetalleServicio selected={selected} />}
+          <div
+            style={{
+              opacity: selected ? 1 : 0,
+              transition: 'opacity 0.3s ease 0.15s',
+              padding: '0 4rem',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
+            {selected && <DetalleServicio selected={selected} />}
+          </div>
+        </div>
+
+        {/* Lista — centrada por defecto, luego a la DERECHA */}
+        <div
+          style={{
+            width: selected ? '40%' : '100%',
+            flexShrink: 0,
+            overflowY: 'auto',
+            transition: 'width 0.45s ease',
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '0 1rem',
+          }}
+        >
+          <div
+            style={{
+              width: '100%',
+              maxWidth: '300px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '2.5rem',
+            }}
+          >
+            {DEPARTAMENTOS.map((dep) => (
+              <div key={dep.nombre} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <p className="uppercase tracking-[0.2em] font-light" style={{ fontSize: '9px', color: 'rgba(255,255,255,0.5)' }}>
+                  {dep.nombre}
+                </p>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                  {dep.servicios.map((servicio) => {
+                    const isActive = selected?.nombre === servicio.nombre
+                    return (
+                      <li key={servicio.nombre}>
+                        <button
+                          onClick={() => handleSelect(servicio, dep.nombre)}
+                          className="font-light tracking-wide text-left"
+                          style={{ fontSize: '13px', color: isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s ease', fontWeight: isActive ? 400 : 300 }}
+                          onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.95)' }}
+                          onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.7)' }}
+                        >
+                          {servicio.nombre}
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
