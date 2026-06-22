@@ -130,7 +130,7 @@ export default function ServiciosOverlay({ onClose }: Props) {
       {/* ══ DESKTOP: lista centrada → detalle izquierda / lista derecha ══ */}
       <div
         className="hidden md:flex"
-        style={{ flex: 1, overflow: 'hidden', paddingBottom: '3rem' }}
+        style={{ flex: 1, overflow: 'hidden' }}
       >
         {/* Detalle — aparece a la IZQUIERDA al seleccionar */}
         <div
@@ -138,7 +138,7 @@ export default function ServiciosOverlay({ onClose }: Props) {
             width: selected ? '60%' : '0%',
             flexShrink: 0,
             overflow: 'hidden',
-            transition: 'width 0.45s ease',
+            transition: 'width 0.5s ease',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -147,8 +147,8 @@ export default function ServiciosOverlay({ onClose }: Props) {
           <div
             style={{
               opacity: selected ? 1 : 0,
-              transition: 'opacity 0.3s ease 0.15s',
-              padding: '0 4rem',
+              transition: 'opacity 0.35s ease 0.2s',
+              padding: '0 5rem',
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
@@ -158,43 +158,59 @@ export default function ServiciosOverlay({ onClose }: Props) {
           </div>
         </div>
 
-        {/* Lista — centrada por defecto, luego a la DERECHA */}
+        {/* Lista — centrada (vertical + horizontal) por defecto, luego a la DERECHA */}
         <div
           style={{
             width: selected ? '40%' : '100%',
             flexShrink: 0,
             overflowY: 'auto',
-            transition: 'width 0.45s ease',
+            transition: 'width 0.5s ease',
             display: 'flex',
+            alignItems: 'center',
             justifyContent: 'center',
-            padding: '0 1rem',
+            padding: '3rem 2rem',
           }}
         >
           <div
             style={{
-              width: '100%',
-              maxWidth: '300px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '2.5rem',
+              gap: '3rem',
+              textAlign: selected ? 'left' : 'center',
             }}
           >
             {DEPARTAMENTOS.map((dep) => (
-              <div key={dep.nombre} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <p className="uppercase tracking-[0.2em] font-light" style={{ fontSize: '9px', color: 'rgba(255,255,255,0.5)' }}>
+              <div key={dep.nombre} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                <p
+                  className="uppercase tracking-[0.25em] font-light"
+                  style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}
+                >
                   {dep.nombre}
                 </p>
-                <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: selected ? '0.65rem' : '0.85rem' }}>
                   {dep.servicios.map((servicio) => {
                     const isActive = selected?.nombre === servicio.nombre
                     return (
                       <li key={servicio.nombre}>
                         <button
                           onClick={() => handleSelect(servicio, dep.nombre)}
-                          className="font-light tracking-wide text-left"
-                          style={{ fontSize: '13px', color: isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.7)', background: 'none', border: 'none', cursor: 'pointer', padding: 0, transition: 'color 0.2s ease', fontWeight: isActive ? 400 : 300 }}
-                          onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.95)' }}
-                          onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.7)' }}
+                          style={{
+                            fontSize: selected ? '13px' : '15px',
+                            letterSpacing: '0.06em',
+                            textTransform: 'uppercase',
+                            color: isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
+                            background: 'none',
+                            border: 'none',
+                            cursor: 'pointer',
+                            padding: 0,
+                            fontWeight: isActive ? 500 : 300,
+                            transition: 'color 0.2s ease, font-size 0.5s ease',
+                            display: 'block',
+                            width: '100%',
+                            textAlign: selected ? 'left' : 'center',
+                          }}
+                          onMouseEnter={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,1)' }}
+                          onMouseLeave={e => { if (!isActive) e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
                         >
                           {servicio.nombre}
                         </button>
