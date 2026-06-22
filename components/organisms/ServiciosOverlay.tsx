@@ -121,7 +121,7 @@ export default function ServiciosOverlay({ onClose }: Props) {
       <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '5rem', paddingBottom: '3rem', flexShrink: 0 }}>
         <p
           className="uppercase tracking-[0.3em] font-light"
-          style={{ fontSize: '10px', color: 'rgba(255,255,255,0.95)' }}
+          style={{ fontSize: '13px', color: 'rgba(255,255,255,0.95)' }}
         >
           Servicios
         </p>
@@ -183,7 +183,7 @@ export default function ServiciosOverlay({ onClose }: Props) {
               <div key={dep.nombre} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 <p
                   className="uppercase tracking-[0.25em] font-light"
-                  style={{ fontSize: '9px', color: 'rgba(255,255,255,0.35)' }}
+                  style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)' }}
                 >
                   {dep.nombre}
                 </p>
@@ -196,8 +196,7 @@ export default function ServiciosOverlay({ onClose }: Props) {
                           onClick={() => handleSelect(servicio, dep.nombre)}
                           style={{
                             fontSize: selected ? '13px' : '15px',
-                            letterSpacing: '0.06em',
-                            textTransform: 'uppercase',
+                            letterSpacing: '0.03em',
                             color: isActive ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.65)',
                             background: 'none',
                             border: 'none',
@@ -241,7 +240,7 @@ export default function ServiciosOverlay({ onClose }: Props) {
         >
           {DEPARTAMENTOS.map((dep) => (
             <div key={dep.nombre} style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-              <p className="uppercase tracking-[0.2em] font-light" style={{ fontSize: '9px', color: 'rgba(255,255,255,0.5)' }}>
+              <p className="uppercase tracking-[0.2em] font-light" style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)' }}>
                 {dep.nombre}
               </p>
               <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
