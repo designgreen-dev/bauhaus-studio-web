@@ -4,7 +4,6 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Instagram, Mail, Phone } from 'lucide-react'
 import Logo from '@/components/atoms/Logo'
-import NotifyForm from '@/components/molecules/NotifyForm'
 import NavMenu from '@/components/molecules/NavMenu'
 import NosotrosOverlay from '@/components/organisms/NosotrosOverlay'
 
@@ -121,17 +120,10 @@ export default function Hero() {
             Arquitectura bioclimatica, biofilica y Sanemiento Predial
           </p>
         </div>
-
-        <div className="mt-10 space-y-4">
-          <p className="text-[10px] tracking-[0.2em] uppercase text-white/40">
-            Sé el primero en enterarte
-          </p>
-          <NotifyForm dark />
-        </div>
       </div>
 
       {/* Barra de contacto — al final del DOM para estar encima de todo */}
-      <div className="absolute bottom-16 right-6 md:right-16 lg:right-28 xl:right-36 z-30 flex items-center gap-4">
+      <div className="absolute bottom-6 right-6 md:right-16 lg:right-28 xl:right-36 z-30 flex items-center gap-4">
         {CONTACT.map((item) => (
           <ContactButton key={item.label} item={item} />
         ))}
