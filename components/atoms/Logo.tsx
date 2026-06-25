@@ -1,10 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 export default function Logo({ className = '' }: { className?: string }) {
-  const [hovered, setHovered] = useState(false)
+  const [hovered,  setHovered]  = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
     <Image
@@ -15,7 +22,7 @@ export default function Logo({ className = '' }: { className?: string }) {
       className={`object-contain ${className}`}
       priority
       style={{
-        transform: hovered ? 'scale(0.88)' : 'scale(1)',
+        transform: hovered || scrolled ? 'scale(0.88)' : 'scale(1)',
         transition: 'transform 0.4s ease',
       }}
       onMouseEnter={() => setHovered(true)}
