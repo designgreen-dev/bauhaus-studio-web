@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Urbanist } from 'next/font/google'
 import './globals.css'
+import IntroSplash from '@/components/organisms/IntroSplash'
 
 const urbanist = Urbanist({
   subsets: ['latin'],
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={urbanist.variable}>
       <body className="font-sans bg-cream text-stone-dark antialiased min-h-screen">
+        <IntroSplash />
         {children}
       </body>
     </html>
